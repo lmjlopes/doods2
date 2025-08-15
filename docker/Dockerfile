@@ -15,4 +15,4 @@ ADD . .
 ENV TF_CPP_MIN_LOG_LEVEL=3
 
 ENTRYPOINT ["python3", "main.py"]
-CMD ["api"]
+CMD ["mqtt"]
