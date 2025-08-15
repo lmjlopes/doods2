@@ -27,7 +27,6 @@ class MQTT():
             # Run the stream detector and return the results.
             streamer = Streamer(self.doods).start_stream(mqtt_detect_request)
             for detect_response in streamer:
-                self.logger.warning(f'Detections: %s', detect_response.detections)
                 
                 # Only execute and send mqtt notification if there is something detected 
                 if detect_response.detections:
@@ -81,7 +80,8 @@ class MQTT():
                             # Otherwise, inlcude the base64-encoded image in the response
                             else:
                                 detect_response.image = base64.b64encode(detect_response.image).decode('utf-8')
-                    
+                        
+                        self.logger.warning(f'Detections: %s', detect_response.detections)
                         self.mqtt_client.publish(
                                 f"doods/detect/{mqtt_detect_request.id}", 
                                 payload=json.dumps(detect_response.asdict(include_none=False)), qos=0, retain=False)
