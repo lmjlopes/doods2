@@ -1,4 +1,4 @@
-ARG TAG=amd64
+ARG TAG=aarch64
 FROM docker.io/snowzach/doods2:base-$TAG AS base
 
 COPY --from=docker.io/snowzach/doods2:base-config /opt/doods/models /opt/doods/models
