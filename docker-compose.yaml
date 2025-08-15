@@ -3,12 +3,13 @@ services:
   myapp:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       no_cache: true
-    container_name: discord_bot
+    container_name: doosds2-LL
     environment:
-      - DISCORD_TOKEN=${DISCORD_TOKEN_VAR}
-    #volumes:
-    #  - /data/compose:/app
-    #restart: unless-stopped
-    # teste
+      - CONFIG_FILE=/mnt/doods/config.yaml
+    volumes:
+      - /mnt/config/beelink/doods:/mnt/doods
+    restart: unless-stopped
+    networks:
+      - privnet
