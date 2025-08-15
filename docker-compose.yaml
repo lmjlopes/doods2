@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      no_cache: true
+    container_name: discord_bot
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN_VAR}
+    #volumes:
+    #  - /data/compose:/app
+    #restart: unless-stopped
+    # teste
