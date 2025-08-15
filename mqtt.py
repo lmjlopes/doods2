@@ -22,11 +22,12 @@ class MQTT():
 
     def stream(self, mqtt_detect_request: str = '{}'):
         streamer = None
-        self.logger.warning(f'Detecting %s label', self.config.requests)
+        self.logger.warning(f'Detecting this: %s', self.config.requests)
         try:
             # Run the stream detector and return the results.
             streamer = Streamer(self.doods).start_stream(mqtt_detect_request)
             for detect_response in streamer:
+                self.logger.warning.(f'Detections: %s', detect_response)
                 # If separate_detections, iterate over each detection and process it separately
                 if mqtt_detect_request.separate_detections:
 
