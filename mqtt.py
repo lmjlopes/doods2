@@ -27,7 +27,7 @@ class MQTT():
             # Run the stream detector and return the results.
             streamer = Streamer(self.doods).start_stream(mqtt_detect_request)
             for detect_response in streamer:
-                self.logger.warning.(f'Detections: %s', detect_response)
+                self.logger.warning(f'Detections: %s', detect_response)
                 # If separate_detections, iterate over each detection and process it separately
                 if mqtt_detect_request.separate_detections:
 
