@@ -81,6 +81,7 @@ class MQTT():
                             else:
                                 detect_response.image = base64.b64encode(detect_response.image).decode('utf-8')
                         
+                        self.logger.warning(f'Detected this label: %s', detect_response.detections)
                         self.mqtt_client.publish(
                                 f"doods/detect/{mqtt_detect_request.id}", 
                                 payload=json.dumps(detect_response.asdict(include_none=False)), qos=0, retain=False)
