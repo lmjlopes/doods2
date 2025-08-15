@@ -22,6 +22,7 @@ class MQTT():
 
     def stream(self, mqtt_detect_request: str = '{}'):
         streamer = None
+        self.logger.warning(f'listening on mqtt topic %s for requests', self.config.api.request_topic)
         try:
             # Run the stream detector and return the results.
             streamer = Streamer(self.doods).start_stream(mqtt_detect_request)
