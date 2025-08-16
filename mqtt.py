@@ -108,6 +108,9 @@ class MQTT():
         if (self.config.broker.user):
             self.mqtt_client.username_pw_set(self.config.broker.user, self.config.broker.password)
         self.mqtt_client.connect(self.config.broker.host, self.config.broker.port, 60)
+        
+        # Since now only sends mqtt messages when detects the defined labels, it timeouts after the defined 60s. Adding loop_start() to allow paho client to mantain communication with the mqtt broker.
+        self.mqtt_client.loop_start()
 
         for request in self.config.requests:
             threading.Thread(target=self.stream, args=(request,)).start()
